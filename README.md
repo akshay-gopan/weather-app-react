@@ -1,7 +1,7 @@
 # React Weather App
 
 Demo Image
-![Image](images/demo-image.png)
+![Image](public/images/demo-image.png)
 
 
 
