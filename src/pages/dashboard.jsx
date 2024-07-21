@@ -7,19 +7,26 @@ import { FaWind, FaRegEye } from "react-icons/fa";
 import { WiHumidity } from "react-icons/wi";
 import { IoMdSpeedometer } from "react-icons/io";
 import { TbTemperatureSun } from "react-icons/tb";
+import { hourglass } from 'ldrs'
+
+
 
 
 function Dashboard() {
 
     const [city, setCity] = useState("");
     const [weatherInfo, setWeatherInfo] = useState(null);
-
+    const [loading, setLoading] = useState(false)
+    hourglass.register()
     async function getWeather() {
-        const apiKey = import.meta.env.VITE_API_KEY;
 
+        
+        const apiKey = import.meta.env.VITE_API_KEY;
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
+        setLoading(true)
         fetch(url)
+            
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -36,8 +43,12 @@ function Dashboard() {
                     pressure: `${data.main.pressure} hPa`
 
                 };
-
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+                
                 setWeatherInfo(weather);
+            
 
             });
     }
@@ -85,7 +96,19 @@ function Dashboard() {
                     <div>
                         <h2 class="font-medium text-[30px] ml-10">Today Overview</h2>
                     </div>
-                    {weatherInfo && (
+                    { loading ? ( 
+                        <div class="flex justify-center align-middle mt-20">
+                            <l-hourglass
+                            size="50"
+                            bg-opacity="0.1"
+                            speed="1" 
+                            color="white" 
+                            />
+
+                        </div>                            
+                             )
+                    
+                    : ( weatherInfo && (
                         <div class="flex flex-row mt-[10px]">
                             <div class="w-1/4 p-8">
                                 <div class="flex flex-col justify-center align-middle border border-white rounded-md p-5">
@@ -129,7 +152,7 @@ function Dashboard() {
 
                             </div>
                         </div>
-                    )}
+                    ))}
                 </div>
 
             </div>
