@@ -4,7 +4,7 @@
 ![Image](public/images/demo-img.png)
 
 ## Powered by 
-OpenSteetMap
+OpenStreetMap
 
 
 
