@@ -85,137 +85,149 @@ function Dashboard() {
 
   return (
     <>
-      <div className="bg-slate-900 w-screen h-screen p-10 text-white">
-        <div className="flex justify-center align-middle">
-          <div className="flex flex-row justify-center align-middle mx-auto gap-7 w-full h-[100px]">
-            <div className="w-1/5 self-center flex justify-end">
-              <div className="flex flex-row gap-3 self-center w-fit px-5 py-3 bg-slate-800 text-white rounded-md">
-                <TiWeatherCloudy className="self-center size-6" />
-                <h4 className="font-medium">Weather</h4>
+      <div className="flex flex-col justify-evenly h-screen">
+        <div className="bg-slate-900 w-screen h-screen px-10 text-white">
+          <div className="flex justify-center align-middle">
+            <div className="flex flex-row justify-center align-middle mx-auto gap-7 w-full h-[100px]">
+              <div className="w-1/5 self-center flex justify-end">
+                <div className="flex flex-row gap-3 self-center w-fit px-5 py-3 bg-slate-800 text-white rounded-md">
+                  <TiWeatherCloudy className="self-center size-6" />
+                  <h4 className="font-medium">Weather</h4>
+                </div>
               </div>
-            </div>
-            <div className="w-3/5 self-center">
-              <input
-                type="search"
-                placeholder="Search by city..."
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                onKeyDown={handleEnterKey}
-                className="self-center bg-slate-800 text-white rounded-md px-5 py-3 w-full"
-              />
-            </div>
-            <div className="w-1/5 self-center">
-              <button
-                className="bg-slate-800 text-white rounded-md px-5 py-3 self-center"
-                onClick={getWeather}
-              >
-                <PiCompassRose className="self-center size-6" />
-              </button>
+              <div className="w-3/5 self-center">
+                <input
+                  type="search"
+                  placeholder="Search by city..."
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  onKeyDown={handleEnterKey}
+                  className="self-center bg-slate-800 text-white rounded-md px-5 py-3 w-full"
+                />
+              </div>
+              <div className="w-1/5 self-center">
+                <button
+                  className="bg-slate-800 text-white rounded-md px-5 py-3 self-center"
+                  onClick={getWeather}
+                >
+                  <PiCompassRose className="self-center size-6" />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div>
-          {loading ? (
-            <div className="flex justify-center align-middle mt-20">
-              <l-hourglass size="50" bg-opacity="0.1" speed="1" color="white" />
-            </div>
-          ) : error ? (
-            <div className="flex justify-center align-middle mt-20">
-              <div className="text-red-500 bg-slate-800 font-semibold p-5 border border-red-500 rounded-md">
-                <p>{error}</p>
+          <div>
+            {loading ? (
+              <div className="flex justify-center align-middle mt-20">
+                <l-hourglass
+                  size="50"
+                  bg-opacity="0.1"
+                  speed="1"
+                  color="white"
+                />
               </div>
-            </div>
-          ) : (
-            weatherInfo && (
-              <>
-                <div>
-                  <h2 className="font-medium text-[30px] ml-10">
-                    Today Overview
-                  </h2>
+            ) : error ? (
+              <div className="flex justify-center align-middle mt-20">
+                <div className="text-red-500 bg-slate-800 font-semibold p-5 border border-red-500 rounded-md">
+                  <p>{error}</p>
                 </div>
-                <div className="flex flex-row mt-[10px]">
-                  <div className="w-full flex flex-row gap-10 justify-center">
-                    <div className="flex flex-col gap-5 py-10 w-1/4">
-                      <div>
-                        <Card
-                          content="Wind Speed"
-                          value={weatherInfo.wind}
-                          icon={<FaWind className="size-12" />}
-                        />
-                      </div>
-                      <div>
-                        <Card
-                          content="Humidity"
-                          value={weatherInfo.humidity}
-                          icon={<WiHumidity className="size-16" />}
-                        />
-                      </div>
-                      <div>
-                        <Card
-                          content="Sunrise"
-                          value={weatherInfo.sunrise}
-                          icon={<FiSunrise className="size-12" />}
-                        />
-                      </div>
-                    </div>
-                    <div className="w-1/4 p-6">
-                      <div className="flex flex-col justify-center align-middle border border-white rounded-md py-10 px-5">
-                        <div className="self-center">
-                          <TbTemperatureSun className="size-32" />
+              </div>
+            ) : (
+              weatherInfo && (
+                <>
+                  <div>
+                    <h2 className="font-medium text-[30px] ml-10">
+                      Today Overview
+                    </h2>
+                  </div>
+                  <div className="flex flex-row mt-[10px]">
+                    <div className="w-full flex flex-row gap-10 justify-center">
+                      <div className="flex flex-col gap-5 py-10 w-1/4">
+                        <div>
+                          <Card
+                            content="Wind Speed"
+                            value={weatherInfo.wind}
+                            icon={<FaWind className="size-12" />}
+                          />
                         </div>
-                        <p className="self-center text-white font-medium text-[60px]">
-                          {weatherInfo.temperature}
-                        </p>
-                        <p className="self-center text-white font-normal text-[30px] mb-5">
-                          {weatherInfo.condition}
-                        </p>
+                        <div>
+                          <Card
+                            content="Humidity"
+                            value={weatherInfo.humidity}
+                            icon={<WiHumidity className="size-16" />}
+                          />
+                        </div>
+                        <div>
+                          <Card
+                            content="Sunrise"
+                            value={weatherInfo.sunrise}
+                            icon={<FiSunrise className="size-12" />}
+                          />
+                        </div>
+                      </div>
+                      <div className="w-1/4 p-6">
+                        <div className="flex flex-col justify-center align-middle border border-white rounded-md py-10 px-5">
+                          <div className="self-center">
+                            <TbTemperatureSun className="size-32" />
+                          </div>
+                          <p className="self-center text-white font-medium text-[60px]">
+                            {weatherInfo.temperature}
+                          </p>
+                          <p className="self-center text-white font-normal text-[30px] mb-5">
+                            {weatherInfo.condition}
+                          </p>
 
-                        <hr />
-                        <div className="self-center flex flex-col gap-5 mt-7">
-                          <div className="flex flex-row gap-3">
-                            <CiLocationOn className="self-center size-7" />
-                            <p className="self-center font-normal text-[20px]">
-                              {weatherInfo.location}
-                            </p>
-                          </div>
-                          <div className="flex flex-row gap-2">
-                            <CiCalendar className="self-center size-7" />
-                            <p className="self-center font-normal text-[20px]">
-                              {formattedDate}
-                            </p>
+                          <hr />
+                          <div className="self-center flex flex-col gap-5 mt-7">
+                            <div className="flex flex-row gap-3">
+                              <CiLocationOn className="self-center size-7" />
+                              <p className="self-center font-normal text-[20px]">
+                                {weatherInfo.location}
+                              </p>
+                            </div>
+                            <div className="flex flex-row gap-2">
+                              <CiCalendar className="self-center size-7" />
+                              <p className="self-center font-normal text-[20px]">
+                                {formattedDate}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="flex flex-col gap-5 py-10 w-1/4">
-                      <div>
-                        <Card
-                          content="Pressure"
-                          value={weatherInfo.pressure}
-                          icon={<IoMdSpeedometer className="size-12" />}
-                        />
-                      </div>
-                      <div>
-                        <Card
-                          content="Visibility"
-                          value={weatherInfo.visibility}
-                          icon={<FaRegEye className="size-12" />}
-                        />
-                      </div>
-                      <div>
-                        <Card
-                          content="Sunset"
-                          value={weatherInfo.sunset}
-                          icon={<FiSunset className="size-12" />}
-                        />
+                      <div className="flex flex-col gap-5 py-10 w-1/4">
+                        <div>
+                          <Card
+                            content="Pressure"
+                            value={weatherInfo.pressure}
+                            icon={<IoMdSpeedometer className="size-12" />}
+                          />
+                        </div>
+                        <div>
+                          <Card
+                            content="Visibility"
+                            value={weatherInfo.visibility}
+                            icon={<FaRegEye className="size-12" />}
+                          />
+                        </div>
+                        <div>
+                          <Card
+                            content="Sunset"
+                            value={weatherInfo.sunset}
+                            icon={<FiSunset className="size-12" />}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </>
-            )
-          )}
+                </>
+              )
+            )}
+          </div>
+        </div>
+        <div className="flex justify-center align-baseline bg-slate-900">
+          <p className="text-gray-400 text-sm font-medium mb-1">
+            © 2024 Developed by Akshay Gopan
+          </p>
         </div>
       </div>
     </>

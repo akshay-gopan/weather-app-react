@@ -1,7 +1,10 @@
 # React Weather App
 
-Demo Image
-![Image](public/images/demo-image.png)
+## Demo Image
+![Image](public/images/demo-img.png)
+
+## Powered by 
+OpenSteetMap
 
 
 
